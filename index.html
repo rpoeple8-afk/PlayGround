@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#10121b"><link rel="icon" href="data:,">
+<title>NEON RUMBLE — Pixel Fighter</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap');
+:root{--ink:#f7f3e8;--muted:#9a9daf;--lime:#d9ff64;--pink:#ff547d;--panel:#171a27;--line:#34384b}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#10121b;color:var(--ink);font-family:'Space Mono',monospace;touch-action:none}body{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,#28273a 0%,#10121b 68%)}.shell{width:min(1120px,100vw);height:min(820px,100dvh);padding:clamp(12px,2.4vw,28px);display:flex;flex-direction:column;gap:14px}.topbar{height:42px;display:flex;align-items:center;justify-content:space-between}.brand{font:12px 'Press Start 2P';letter-spacing:-.7px}.brand span{color:var(--lime)}.edition{font-size:10px;color:#8f93a8;letter-spacing:2px}.arena-card{position:relative;flex:1;min-height:0;border:1px solid #45465b;background:#141724;box-shadow:0 12px 50px #0008;overflow:hidden}.canvas-wrap{position:absolute;inset:0;display:grid;place-items:center;background:#171724}canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges}.hud{position:absolute;inset:0 0 auto;z-index:2;padding:clamp(12px,2vw,24px);pointer-events:none}.fighter-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.fighter{width:42%;max-width:400px}.fighter.enemy{text-align:right}.fighter-name{display:flex;justify-content:space-between;align-items:center;font:9px 'Press Start 2P';margin-bottom:9px;text-shadow:2px 2px #14141d}.enemy .fighter-name{flex-direction:row-reverse}.role{font:10px 'Space Mono';color:#b4b6c4;letter-spacing:1px}.health-track{height:15px;border:2px solid #f4eddd;background:#272737;transform:skewX(-12deg);padding:2px}.health{height:100%;width:100%;background:var(--lime);transition:width .18s;box-shadow:0 0 12px #d9ff6477}.enemy .health{margin-left:auto;background:var(--pink)}.meter{height:3px;margin-top:5px;background:#3e3a4b}.meter i{height:100%;display:block;background:#62e8dd;transition:width .2s}.enemy .meter i{margin-left:auto;background:#ffb857}.round-clock{position:absolute;left:50%;top:clamp(11px,2vw,24px);transform:translateX(-50%);text-align:center}.round-label{font:7px 'Press Start 2P';color:#c1c3cf}.time{font:19px 'Press Start 2P';margin-top:7px;text-shadow:0 0 14px #ffe275}.announce{position:absolute;z-index:3;left:50%;top:40%;transform:translate(-50%,-50%);font:clamp(14px,3vw,24px) 'Press Start 2P';color:#fff3a7;text-shadow:3px 4px #352044,0 0 20px #ffae4c;text-align:center;white-space:nowrap;pointer-events:none;animation:pop .25s ease-out}@keyframes pop{from{transform:translate(-50%,-50%) scale(.6)}to{transform:translate(-50%,-50%) scale(1)}}.overlay{position:absolute;z-index:4;inset:0;display:grid;place-items:center;background:linear-gradient(90deg,#0d1018b8,#17101db3);text-align:center;padding:20px}.overlay.hidden{display:none}.dialog{max-width:540px}.eyebrow{font-size:10px;letter-spacing:4px;color:var(--lime);margin-bottom:18px}.dialog h1{font:clamp(20px,5vw,39px)/1.45 'Press Start 2P';margin:0 0 14px;text-shadow:4px 4px #742b50}.dialog h1 span{color:var(--pink)}.dialog p{font-size:12px;line-height:1.9;color:#c5c6d0;margin:0 auto 24px;max-width:410px}.action{font:10px 'Press Start 2P';color:#151724;background:var(--lime);border:0;padding:16px 21px;box-shadow:4px 4px #82993d;cursor:pointer;touch-action:manipulation}.action:active{transform:translate(2px,2px);box-shadow:2px 2px #82993d}.controls{height:154px;display:flex;align-items:center;justify-content:space-between;gap:12px}.move-controls,.attack-controls{display:flex;align-items:center;gap:10px}.pad{display:grid;grid-template-columns:repeat(3,54px);grid-template-rows:repeat(2,46px);gap:5px}.btn{border:1px solid #45495c;background:linear-gradient(145deg,#222637,#171a27);color:#e8e8ed;box-shadow:0 4px #0a0c12;display:grid;place-items:center;user-select:none;-webkit-user-select:none;touch-action:none;cursor:pointer}.btn:active,.btn.held{background:#383d53;transform:translateY(2px);box-shadow:0 2px #0a0c12}.dir{font-size:19px;color:#d9dce6}.pad .up{grid-column:2;grid-row:1}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}.move-note{font-size:9px;color:#82879b;line-height:1.7}.attack-controls{gap:9px}.action-btn{width:63px;height:63px;border-radius:50%;position:relative;font:9px 'Press Start 2P';letter-spacing:-1px}.action-btn b{position:absolute;top:-9px;right:-3px;border:1px solid #51566c;background:#24283a;padding:3px 5px;font:9px 'Space Mono';color:#c7c9d4}.action-btn.punch{border-color:#9c4e6d;background:radial-gradient(circle at 35% 20%,#823a58,#2e2131);color:#ffb7cc}.action-btn.kick{border-color:#936744;background:radial-gradient(circle at 35% 20%,#795b33,#2c2831);color:#ffe0a2}.action-btn.block{width:51px;height:51px;border-color:#427d78;background:radial-gradient(circle at 35% 20%,#326a66,#1e2932);color:#a7fff0}.bottomline{display:flex;justify-content:space-between;align-items:center;color:#767b90;font-size:9px;letter-spacing:1px}.bottomline strong{color:#c7c9d4;font-weight:400}.icon-btn{border:1px solid #393d50;background:transparent;color:#a6a9b8;padding:8px 11px;font:9px 'Space Mono';cursor:pointer}.icon-btn:hover{color:white;border-color:#777c92}@media(min-width:800px){.controls{height:112px}.pad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(2,40px)}.move-note{margin-left:7px}}@media(max-width:600px){.shell{gap:8px;padding:12px 10px max(10px,env(safe-area-inset-bottom))}.topbar{height:26px}.brand{font-size:9px}.edition{font-size:8px;letter-spacing:1px}.controls{height:132px}.pad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(2,41px);gap:4px}.move-note{display:none}.attack-controls{gap:6px}.action-btn{width:55px;height:55px;font-size:8px}.action-btn.block{width:45px;height:45px}.bottomline{font-size:8px}.role{font-size:8px}.fighter-name{font-size:7px}.health-track{height:12px}.round-label{font-size:6px}.time{font-size:15px}.hud{padding:12px}.dialog p{font-size:10px}.controls{justify-content:space-between}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="topbar"><div class="brand"><span>NEON</span> RUMBLE</div><div class="edition">ARCADE / 01</div></header>
+<section class="arena-card" aria-label="Arena pertarungan">
+<div class="canvas-wrap"><canvas id="game" width="480" height="270" aria-label="Game fighting pixel art"></canvas></div>
+<div class="hud"><div class="fighter-row"><div class="fighter"><div class="fighter-name"><span>KAIA</span><span class="role">PLAYER 01</span></div><div class="health-track"><div id="p-health" class="health"></div></div><div class="meter"><i id="p-meter" style="width:22%"></i></div></div><div class="fighter enemy"><div class="fighter-name"><span>ROOK</span><span class="role">CPU</span></div><div class="health-track"><div id="e-health" class="health"></div></div><div class="meter"><i id="e-meter" style="width:22%"></i></div></div></div><div class="round-clock"><div class="round-label">ROUND 01</div><div class="time" id="clock">60</div></div></div>
+<div id="announce" class="announce" hidden></div>
+<div id="overlay" class="overlay"><div class="dialog"><div class="eyebrow">◆ THE ROOFTOP CIRCUIT ◆</div><h1>NEON<br><span>RUMBLE</span></h1><p>One rooftop. One last round.<br>Take down Rook and claim the city.</p><button id="start" class="action">START FIGHT</button></div></div>
+</section>
+<section class="controls" aria-label="Kontrol permainan"><div class="move-controls"><div class="pad"><button class="btn dir up" data-key="up" aria-label="Lompat">↑</button><button class="btn dir left" data-key="left" aria-label="Kiri">←</button><button class="btn dir down" data-key="down" aria-label="Jongkok">↓</button><button class="btn dir right" data-key="right" aria-label="Kanan">→</button></div><div class="move-note">MOVE <strong>A / D</strong><br>JUMP <strong>W / ↑</strong></div></div><div class="attack-controls"><button class="btn action-btn block" data-key="block" aria-label="Bertahan">GUARD<b>L</b></button><button class="btn action-btn punch" data-key="punch" aria-label="Pukul">PUNCH<b>J</b></button><button class="btn action-btn kick" data-key="kick" aria-label="Tendang">KICK<b>K</b></button></div></section>
+<footer class="bottomline"><span>← → MOVE &nbsp;·&nbsp; ↑ JUMP &nbsp;·&nbsp; J PUNCH &nbsp;·&nbsp; K KICK</span><button id="sound" class="icon-btn">♪ SOUND ON</button></footer>
+</main>
+<script>
+(()=>{
+const c=document.getElementById('game'),ctx=c.getContext('2d'),W=480,H=270;
+ctx.imageSmoothingEnabled=false;
+const $=s=>document.querySelector(s), hp=$('#p-health'),he=$('#e-health'),pm=$('#p-meter'),em=$('#e-meter'),clock=$('#clock'),overlay=$('#overlay'),announce=$('#announce');
+let running=false,started=false,last=0,elapsed=0,roundTime=60,announceTimer=0,soundOn=true,audio;
+const keys={left:false,right:false,up:false,down:false,block:false,punch:false,kick:false};
+const p={x:142,y:207,vx:0,vy:0,face:1,hp:100,meter:22,act:'idle',actT:0,hitDone:false,stun:0,flash:0,walk:0,guard:false};
+const e={x:338,y:207,vx:0,vy:0,face:-1,hp:100,meter:22,act:'idle',actT:0,hitDone:false,stun:0,flash:0,walk:0,guard:false,ai:0};
+const rnd=(a,b)=>a+Math.random()*(b-a);
+function beep(freq=200,dur=.07,type='square',vol=.035){if(!soundOn)return;try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();let o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch{}}
+function show(text,dur=1000){announce.textContent=text;announce.hidden=false;announceTimer=dur}
+function start(){if(running)return;overlay.classList.add('hidden');running=true;started=true;elapsed=0;roundTime=60;p.hp=e.hp=100;p.meter=e.meter=22;p.x=142;e.x=338;p.y=e.y=207;p.vy=e.vy=0;p.act=e.act='idle';show('FIGHT!',900);last=performance.now();requestAnimationFrame(loop);beep(540,.1)}
+$('#start').addEventListener('click',start);
+$('#sound').addEventListener('click',()=>{$('#sound').textContent=soundOn?'♪ SOUND OFF':'♪ SOUND ON';soundOn=!soundOn;if(soundOn)beep(500)});
+function resetGame(){running=false;overlay.classList.remove('hidden');$('.dialog h1').innerHTML='NEON<br><span>RUMBLE</span>';$('.dialog p').innerHTML='One rooftop. One last round.<br>Take down Rook and claim the city.';$('#start').textContent='FIGHT AGAIN';clock.textContent='60'}
+function end(won){running=false;show(won?'KAIA WINS!':'ROOK WINS!',4000);setTimeout(()=>{overlay.classList.remove('hidden');$('.dialog h1').innerHTML=won?'CITY<br><span>CHAMPION</span>':'TRY<br><span>AGAIN</span>';$('.dialog p').innerHTML=won?'The rooftop is yours. The city remembers.':'Rook still holds the rooftop. Run it back?';$('#start').textContent='REMATCH'},1100)}
+function act(f,name){if(f.stun>0||f.act==='hurt'||f.act==='ko'||f.actT>0)return;if(name==='block'){f.guard=true;return}f.guard=false;f.act=name;f.actT=name==='punch'?.28:name==='kick'?.43:.7;f.hitDone=false;beep(name==='punch'?175:115,.055,name==='punch'?'square':'sawtooth',.025)}
+function keyboard(e,down){let k=e.key.toLowerCase(),map={a:'left',arrowleft:'left',d:'right',arrowright:'right',w:'up',arrowup:'up',s:'down',arrowdown:'down',j:'punch',k:'kick',l:'block'};let val=map[k];if(!val)return;e.preventDefault();if(val==='punch'||val==='kick'){if(down&&!keys[val])act(p,val);keys[val]=down}else if(val==='up'){if(down&&!keys.up&&p.y>=207){p.vy=-6.6;beep(310,.045,'triangle')}keys.up=down}else keys[val]=down}
+window.addEventListener('keydown',e=>keyboard(e,true));window.addEventListener('keyup',e=>keyboard(e,false));
+function bindButton(btn){let key=btn.dataset.key;const down=e=>{e.preventDefault();btn.classList.add('held');if(key==='punch'||key==='kick')act(p,key);else if(key==='up'){if(p.y>=207){p.vy=-6.6;beep(310,.045,'triangle')}}else keys[key]=true},up=e=>{e.preventDefault();btn.classList.remove('held');if(key!=='punch'&&key!=='kick'&&key!=='up')keys[key]=false};btn.addEventListener('pointerdown',down);['pointerup','pointercancel','pointerleave'].forEach(ev=>btn.addEventListener(ev,up))}
+document.querySelectorAll('[data-key]').forEach(bindButton);
+function updateFighter(f,dt,player){if(f.stun>0)f.stun-=dt;if(f.flash>0)f.flash-=dt;if(f.actT>0){f.actT-=dt;if(f.actT<=0)f.act='idle'}if(f.y<207||f.vy<0){f.vy+=17*dt;f.y+=f.vy; if(f.y>207){f.y=207;f.vy=0}}if(f.act==='hurt'&&f.stun<=0)f.act='idle';f.guard=player?keys.block:false;}
+function combat(dt){let dist=e.x-p.x;p.face=dist>=0?1:-1;e.face=-p.face;
+if(p.stun<=0&&p.act!=='hurt'){let mv=(keys.right?1:0)-(keys.left?1:0);if(!p.guard&&p.actT<=0){p.vx=mv*1.35;if(mv){p.x+=p.vx;p.walk+=dt*12;if(p.act==='idle')p.act='walk'}else if(p.act==='walk')p.act='idle'}else p.vx=0}
+p.guard=keys.block;
+e.ai-=dt;if(e.stun<=0&&e.act!=='hurt'&&e.actT<=0){let d=Math.abs(dist);if(d>43){e.x+=Math.sign(dist)*.64;e.walk+=dt*8;e.act='walk'}else{e.act='idle';if(e.ai<=0){e.ai=rnd(.35,.9);if(Math.random()<.30){e.guard=true}else{e.guard=false;act(e,Math.random()<.58?'punch':'kick')}}}}
+for(let f of [p,e]){f.x=Math.max(42,Math.min(438,f.x));if(f.act==='punch'||f.act==='kick'){let range=f.act==='punch'?37:47,other=f===p?e:p,forward=(other.x-f.x)*f.face;if(!f.hitDone&&f.actT<(f.act==='punch'?.18:.23)&&f.actT>-.1&&forward>0&&forward<range&&Math.abs(f.y-other.y)<34){f.hitDone=true;let blocked=other.guard&&other.face===-f.face;let damage=blocked?3:(f.act==='punch'?8:13);other.hp=Math.max(0,other.hp-damage);if(!blocked){other.stun=.26;other.act='hurt';other.actT=.2;other.x+=f.face*7;other.flash=.15;beep(f.act==='punch'?105:75,.12,'sawtooth',.04)}else beep(380,.06,'triangle',.025);f.meter=Math.min(100,f.meter+(blocked?4:9));updateHud()}}}
+}
+function updateHud(){hp.style.width=p.hp+'%';he.style.width=e.hp+'%';pm.style.width=p.meter+'%';em.style.width=e.meter+'%'}
+function loop(now){if(!running)return;let dt=Math.min(.04,(now-last)/1000);last=now;elapsed+=dt;roundTime=Math.max(0,60-Math.floor(elapsed));clock.textContent=String(roundTime).padStart(2,'0');updateFighter(p,dt,true);updateFighter(e,dt,false);combat(dt);if(announceTimer>0){announceTimer-=dt*1000;if(announceTimer<=0)announce.hidden=true}draw();if(p.hp<=0||e.hp<=0||roundTime<=0){end(e.hp<=0||(roundTime<=0&&p.hp>=e.hp));draw();return}requestAnimationFrame(loop)}
+function rect(x,y,w,h,col){ctx.fillStyle=col;ctx.fillRect(Math.round(x),Math.round(y),w,h)}
+function draw(){ctx.clearRect(0,0,W,H);
+// neon dusk and blocky city
+let g=ctx.createLinearGradient(0,0,0,220);g.addColorStop(0,'#1c1c35');g.addColorStop(.58,'#533652');g.addColorStop(1,'#e07761');ctx.fillStyle=g;ctx.fillRect(0,0,W,220);
+// moon
+ctx.fillStyle='#ffcb84';ctx.beginPath();ctx.arc(362,75,27,0,Math.PI*2);ctx.fill();ctx.fillStyle='#f6a66f';ctx.fillRect(350,55,8,4);ctx.fillRect(366,68,11,4);ctx.fillRect(347,82,9,4);
+// skyline distant
+for(let i=0;i<13;i++){let x=i*42-4,h=42+(i*29%55);rect(x,164-h,34,h,'#342b43');rect(x+5,168-h,24,h-5,'#453047');for(let wy=171-h;wy<160;wy+=12)for(let wx=x+7;wx<x+28;wx+=10)if((wx+wy+i)%3!==0)rect(wx,wy,4,5,i%2?'#df9c69':'#76516f')}
+// mountain neon streaks
+for(let i=0;i<8;i++){let x=(i*67+23)%470;rect(x,181+(i%3)*5,1,13,'#ffb26d66')}
+// rooftop floor
+rect(0,211,W,59,'#242333');rect(0,211,W,4,'#ffd174');rect(0,215,W,2,'#aa5369');for(let x=0;x<W;x+=24){rect(x,222,11,1,'#424053');rect(x+12,251,8,1,'#39384a')}rect(0,262,W,8,'#151725');rect(0,260,W,2,'#54404e');
+// back billboard and antenna
+rect(23,119,4,92,'#242335');rect(9,115,33,23,'#242239');rect(12,118,27,17,'#b83c6a');ctx.font='5px monospace';ctx.fillStyle='#fff0ad';ctx.fillText('OPEN 24H',14,128);rect(445,126,3,85,'#252337');rect(441,123,12,4,'#363248');rect(444,113,2,10,'#b8e3d3');
+// sprite shadows
+for(const f of [p,e]){ctx.fillStyle='#11111c77';ctx.beginPath();ctx.ellipse(f.x,211,18,4,0,0,Math.PI*2);ctx.fill()}
+// draw fighters sorted
+[p,e].sort((a,b)=>a.y-b.y).forEach(drawFighter);
+// FX sparks
+}
+function drawFighter(f){let x=Math.round(f.x),floor=Math.round(f.y),face=f.face,flip=face<0;ctx.save();ctx.translate(x,0);if(flip)ctx.scale(-1,1);ctx.translate(-x,0);if(f.flash>0&&Math.floor(f.flash*50)%2)ctx.globalAlpha=.45;
+let moving=f.act==='walk'&&f.stun<=0,phase=Math.floor(f.walk*2)%2, crouch=keys.down&&f===p, jump=floor<207;
+const skin=f===p?'#f4b994':'#bb8770',hair=f===p?'#ffcd57':'#201c2b',shirt=f===p?'#36c9bf':'#e95070',dark=f===p?'#155d69':'#602740',pants=f===p?'#273455':'#333449';
+let leg1=moving&&phase?3:0,leg2=moving&&!phase?3:0,guard=f.guard;
+// back leg
+rect(x-9+(leg2),floor-20,7,15,pants);rect(x-10+leg2,floor-7,10,4,'#eee4d0');rect(x+2-leg1,floor-20,7,15,dark);rect(x+1-leg1,floor-7,11,4,'#eee4d0');
+// torso
+rect(x-10,floor-42+(crouch?6:0),21,22,shirt);rect(x-10,floor-23,21,4,dark);rect(x-4,floor-39+(crouch?6:0),5,14,'#fff2d6');
+// arm back
+rect(x+8,floor-39+(f.act==='punch'?-1:0),7,14,skin);rect(x+9,floor-28,8,5,shirt);
+// head
+rect(x-8,floor-58+(crouch?6:0),17,17,skin);rect(x-10,floor-61+(crouch?6:0),19,7,hair);rect(x+6,floor-57+(crouch?6:0),4,7,hair);rect(x+2,floor-52+(crouch?6:0),3,2,'#261e2b');rect(x+4,floor-47+(crouch?6:0),4,2,'#b65b5b');
+// hair ponytail / headband
+if(f===p){rect(x-9,floor-55+(crouch?6:0),18,3,'#ff557d');rect(x-13,floor-52+(crouch?6:0),7,4,'#ff557d');rect(x-14,floor-50+(crouch?6:0),4,8,'#ff557d')}else{rect(x-10,floor-57+(crouch?6:0),9,4,'#201c2b');rect(x-12,floor-54+(crouch?6:0),5,7,'#201c2b')}
+// front arm/action
+let punch=f.act==='punch',kick=f.act==='kick',reach=punch?15:0,armY=guard?floor-48:floor-37;
+if(guard){rect(x+4,floor-48,6,14,skin);rect(x+3,floor-50,9,5,shirt);rect(x+11,floor-54,5,6,skin)}else if(punch){rect(x+7,floor-39,15+reach-15,7,skin);rect(x+18,floor-40,8,8,shirt);rect(x+24,floor-39,8,6,skin)}else{rect(x+5,floor-38,7,14,skin);rect(x+6,floor-28,9,5,shirt)}
+if(kick&&f.actT>.05){rect(x+4,floor-18,14,7,skin);rect(x+15,floor-18,13,5,'#eee4d0');}
+// sash/belt insignia
+rect(x-9,floor-24,18,3,f===p?'#ffcd57':'#f9b250');rect(x+1,floor-24,4,3,'#fff0bd');
+if(f.guard){ctx.globalAlpha=.5;ctx.strokeStyle=f===p?'#73f8e5':'#ffd170';ctx.lineWidth=1;ctx.beginPath();ctx.arc(x+12,floor-39,15,-1.2,1.3);ctx.stroke();ctx.globalAlpha=1}
+if(f.flash>0){rect(x-16,floor-62,33,2,'#fff8d8')}
+ctx.restore()}
+// Initial scene
+function idle(){if(running)return;draw();requestAnimationFrame(idle)}draw();idle();
+})();
+</script>
+</body>
+</html>
